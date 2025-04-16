@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # blazor-app:
+  #   image: mcr.microsoft.com/dotnet/aspnet:7.0
+  #   container_name: blazor-app
+  #   ports:
+  #     - "5000:80"
+  #   volumes:
+  #     - ./BlazorApp:/app
+  #   working_dir: /app
+  #   command: ["dotnet", "BlazorApp.dll"]
+
+  # blazor-build:
+    #image: mcr.microsoft.com/dotnet/sdk:7.0
+    #container_name: blazor-build
+    # volumes:
+    #   - ./BlazorApp:/app
+    # working_dir: /app
+    # command: ["dotnet", "build"]
+    # build: 
+    #   context: .
+    #   dockerfile: Dockerfile
+    #   target: build
+    #   tags:
+    #     - psnehi/blazor-build:latest
+    # image: psnehi/blazor-build:latest
+    # container_name: blazor
+    # restart: always
+    # volumes:
+    #   - ./BlazorApp:/app
+    # ports:
+    #   - "80:5000"
+
+  blazor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - psnehi/docker-test:latest
+    image: psnehi/docker-test:latest
+    container_name: blazor
+    restart: always
+    ports:
+      - "80:80"    
